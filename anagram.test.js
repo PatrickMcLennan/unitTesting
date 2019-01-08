@@ -1,0 +1,2 @@
+const isAnagram = require('./anagram')
+;
