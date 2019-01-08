@@ -1,31 +1,7 @@
 module.exports = {
-  "parser": "babel-eslint",
-  "env": {
-    "browser": true,
-    "es6": true
-  },
-  "settings": {
-    "ecmascript": 6,
-    "jsx": true
-  },
-  "parserOptions": {
-    "ecmaVersion": 2017,
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true,
-      "experimentalDecorators": true,
-      "jsx": true
-    },
-    "sourceType": "module"
-  },
-  "plugins": [
-    "react",
-    "jest",
-  ],
-  "extends": [
-    "airbnb",  
-    "plugin:jest/recommended"
-  ],
-  "rules": {
-    "react/jsx-filename-extension": 0
-  }
+    "extends": "airbnb-base",
+    "plugins": [
+      "jest",
+      "babel"
+    ]
 };
