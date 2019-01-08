@@ -5,27 +5,43 @@ const {
   isNull,
   checkValue,
   createUser,
+  fetchUser,
 } = functions;
 
-// to be value
-test('Adds 2 + 2 to equal 4', () => {
-  expect(add(2, 2)).toBe(4);
+const initDatabase = () => console.log('Starting Test...');
+const closeDatabase = () => console.log('Test Complete');
+
+beforeEach(() => initDatabase());
+afterEach(() => closeDatabase());
+// beforeAll(() => initDatabase());
+// afterAll(() => closeDatabase());
+
+const nameCheck = () => console.log('Checking Name...');
+
+describe('Checking Names', () => {
+  beforeEach(() => nameCheck());
+
+  test('User is Jeff', () => {
+    const user = 'Jeff';
+    expect(user).toBe('Jeff');
+  });
+  test('User is Karen', () => {
+    const user = 'Karen';
+    expect(user).toBe('Karen');
+  });
 });
+
+// to be value
+test('Adds 2 + 2 to equal 4', () => expect(add(2, 2)).toBe(4));
 
 // to not be value
-test('Adds 2 + 2 to NOT equal 5', () => {
-  expect(add(2, 2)).not.toBe(5);
-});
+test('Adds 2 + 2 to NOT equal 5', () => expect(add(2, 2)).not.toBe(5));
 
 //  test for null
-test('Should Be Null', () => {
-  expect(isNull()).toBeNull();
-});
+test('Should Be Null', () => expect(isNull()).toBeNull());
 
 // test for falsy
-test('Should be falsey', () => {
-  expect(checkValue(null)).toBeFalsy();
-});
+test('Should be falsey', () => expect(checkValue(null)).toBeFalsy());
 
 // to be equal type & value
 test('User should be Patrick McLennan Object', () => {
@@ -43,9 +59,7 @@ test('Should be under or equal 1600', () => {
 });
 
 //  Regex
-test('There is no I in team', () => {
-  expect('team').not.toMatch(/I/i);
-});
+test('There is no I in team', () => expect('team').not.toMatch(/I/i));
 
 //  Arrays
 test('Admin should be in usernames', () => {
@@ -54,11 +68,9 @@ test('Admin should be in usernames', () => {
 });
 
 // Working with async data
-
-Promise;
 test('User Fetched name should be Leanne Graham', () => {
   expect.assertions(1);
-  return functions.fetchUser()
+  return fetchUser()
     .then((data) => {
       expect(data.name).toEqual('Leanne Graham');
     });
@@ -67,6 +79,6 @@ test('User Fetched name should be Leanne Graham', () => {
 // Async
 test('User Fetched name should be Leanne Graham', async () => {
   expect.assertions(1);
-  const data = await functions.fetchUser();
+  const data = await fetchUser();
   expect(data.name).toEqual('Leanne Graham');
 });
